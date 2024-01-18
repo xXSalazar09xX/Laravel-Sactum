@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api en swagger",
+        "description": "Listados de Url de usuarios",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/usuario": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Listado de los registro de Usuarios",
+                "operationId": "2d3cb90fb7244b81d25f1244015e7648",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "dilan"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "cris@gmail.com"
+                                                    },
+                                                    "email_varified_at": {
+                                                        "type": "timestamp",
+                                                        "example": ""
+                                                    },
+                                                    "password": {
+                                                        "type": "string",
+                                                        "example": "132135"
+                                                    },
+                                                    "estado": {
+                                                        "type": "booleano",
+                                                        "example": "0"
+                                                    },
+                                                    "tipo_id": {
+                                                        "type": "foreignId",
+                                                        "example": "2"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
