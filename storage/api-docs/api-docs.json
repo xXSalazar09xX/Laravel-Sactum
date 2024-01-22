@@ -1,13 +1,13 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Api en swagger",
-        "description": "Listados de Url de usuarios",
+        "title": "Sistema de Logueo",
+        "description": "Sistema de prática con los estudiantes de quinto nivel",
         "version": "1.0"
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000"
+            "url": "http://127.0.0.1:8000/"
         }
     ],
     "paths": {
@@ -68,6 +68,73 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/registrarse": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Registo usuario",
+                "operationId": "idcreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "nombre del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Correo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "Contrasena",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tipo_id",
+                        "in": "path",
+                        "description": "Tipo de usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "402": {
+                        "description": "Campos requeridos"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }

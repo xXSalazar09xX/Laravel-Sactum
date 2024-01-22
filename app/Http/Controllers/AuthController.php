@@ -6,14 +6,22 @@ Use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-/**
-* @OA\Info(
-*             title="Api en swagger", 
-*             version="1.0",
-*             description="Listados de Url de usuarios"
-* )
-*
-* @OA\Server(url="http://127.0.0.1:8000")
+/** @OA\Info(
+    *             title="Sistema de Logueo",
+    *             version="1.0",
+    *             description="Sistema de prática con los estudiantes de quinto nivel"
+    * )
+    *
+    * @OA\Server(url="http://127.0.0.1:8000/")
+     * @OA\SecurityScheme(
+     *     type="http",
+     *     description="Login with email and password to get the authentication token",
+     *     name="Token based Based",
+     *     in="header",
+     *     scheme="bearer",
+     *     bearerFormat="JWT",
+     *     securityScheme="apiAuth",
+     * ) 
 */
 
 
@@ -89,10 +97,60 @@ class AuthController extends Controller
     {
         //
     }
-
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/registrarse",
+     *     tags={"user"},
+     *     summary="Registo usuario",
+     *     operationId="idcreate",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="path",
+     *         description="nombre del usuario",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="path",
+     *         description="Correo",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+    *     @OA\Parameter(
+     *         name="password",
+     *         in="path",
+     *         description="Contrasena",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="tipo_id",
+     *         in="path",
+     *         description="Tipo de usuario",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="ok"
+     *     ),
+     *     @OA\Response(
+     *         response="402",
+     *         description="Campos requeridos"
+     *     )
+     * )
      */
+     
+       
     public function store(Request $request)
     {
         $validateUsuario = Validator::make($request->all(),
